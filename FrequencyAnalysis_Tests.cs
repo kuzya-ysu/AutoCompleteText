@@ -41,9 +41,9 @@ namespace TextAnalysis
             var text = "x y";
             var parsedText = ParseText(text);
             var expected = new Dictionary<string, string>
-            {
-                {"x", "y"}
-            };
+                {
+                    {"x", "y"}
+                };
 
             var actual = FrequencyAnalysisTask.GetMostFrequentNextWords(parsedText);
 
@@ -57,11 +57,11 @@ namespace TextAnalysis
             var text = "x y z";
             var parsedText = ParseText(text);
             var expected = new Dictionary<string, string>
-            {
-                {"x", "y"},
-                {"y", "z"},
-                {"x y", "z"}
-            };
+                {
+                    {"x", "y"},
+                    {"y", "z"},
+                    {"x y", "z"}
+                };
 
             var actual = FrequencyAnalysisTask.GetMostFrequentNextWords(parsedText);
 
@@ -84,13 +84,13 @@ namespace TextAnalysis
         [Test]
         [Order(05)]
         public void ReturnResult_WithMostFrequentBigrams([Values("x y. x z. x y.", "x z. x y. x y", "x y. x y.", "x y")]
-            string text)
+                string text)
         {
             var parsedText = ParseText(text);
             var expected = new Dictionary<string, string>
-            {
-                {"x", "y"}
-            };
+                {
+                    {"x", "y"}
+                };
 
             var actual = FrequencyAnalysisTask.GetMostFrequentNextWords(parsedText);
 
@@ -101,13 +101,13 @@ namespace TextAnalysis
         [Order(06)]
         public void ReturnResult_WithLexicographicallyFirstBigram_IfBigramsHaveSameFrequency(
             [Values("x y. x z.", "x z. x y.", "x y. x yy.", "x yy. x y")]
-            string text)
+                string text)
         {
             var parsedText = ParseText(text);
             var expected = new Dictionary<string, string>
-            {
-                {"x", "y"}
-            };
+                {
+                    {"x", "y"}
+                };
 
             var actual = FrequencyAnalysisTask.GetMostFrequentNextWords(parsedText);
 
@@ -132,10 +132,10 @@ namespace TextAnalysis
         {
             var parsedText = ParseText(text);
             var expected = new Dictionary<string, string>
-            {
-                {"x", "y"},
-                {"y", "z"}
-            };
+                {
+                    {"x", "y"},
+                    {"y", "z"}
+                };
 
             var actual = FrequencyAnalysisTask.GetMostFrequentNextWords(parsedText);
 
