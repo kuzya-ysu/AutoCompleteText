@@ -10,31 +10,47 @@ namespace TextAnalysis
             string phraseBeginning,
             int wordsCount)
         {
+            StringBuilder phraseContinuation = new StringBuilder();
             if (nextWords.Count > 0)
             {
-                var a = phraseBeginning.Split(' ');
-                StringBuilder key = new StringBuilder();
                 int num = 0;
                 while (num < wordsCount)
                 {
-                    if (a.Length > 1 && nextWords.ContainsKey(key.ToString()))
+                    List<string> words = new List<string>(phraseBeginning.Split(' '));
+                    if (words.Count > 1)
                     {
+                        StringBuilder key = new StringBuilder();
+                        key.Append(words[words.Count - 2] + " " + words[words.Count - 1]);
+                        if (nextWords.ContainsKey(key.ToString()))
+                        {
+                            words.Add(nextWords[key.ToString()]);
+                        }
+                        else
+                        {
+                            key = new StringBuilder();
+                            key.Append(words[words.Count - 1]);
+                            if (nextWords.ContainsKey(key.ToString()))
+                                words.Add(nextWords[key.ToString()]);
+                            else
+                                foreach (var word in words)
+                                    phraseContinuation.Append(word + " ");
+                        }
 
-                        key.Append(a[a.Length - 2] + " " + a[a.Length - 1]);
-                        key.Append(" " + nextWords[key.ToString()]);
                     }
                     else
                     {
-                        key = new StringBuilder();
-                        key.Append(a[a.Length - 1]);
+                        StringBuilder key = new StringBuilder();
+                        key.Append(words[words.Count - 1]);
                         if (nextWords.ContainsKey(key.ToString()))
-                        {
-                            key.Append(" " + nextWords[key.ToString()]);
-                        }
+                            words.Add(nextWords[key.ToString()]);
+                        else
+                            foreach (var word in words)
+                                phraseContinuation.Append(word + " ");
                     }
+                    num++;
                 }
             }
-            return phraseBeginning;
+            return phraseContinuation.ToString();
         }
     }
 }
