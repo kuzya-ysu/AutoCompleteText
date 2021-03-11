@@ -10,23 +10,27 @@ namespace TextAnalysis
             string phraseBeginning,
             int wordsCount)
         {
-            var a = phraseBeginning.Split(' ');
-            StringBuilder key = new StringBuilder();
-            key.Append(a[a.Length - 2] + " " + a[a.Length - 1]);
-            int num = 0;
-            while (num < wordsCount)
+            if (nextWords.Count > 0)
             {
-                if (a.Length > 1 && nextWords.ContainsKey(key.ToString()))
+                var a = phraseBeginning.Split(' ');
+                StringBuilder key = new StringBuilder();
+                int num = 0;
+                while (num < wordsCount)
                 {
-                    key.Append(" " + nextWords[key.ToString()]);
-                }
-                else
-                {
-                    key = null;
-                    key.Append(a[a.Length - 1]);
-                    if (nextWords.ContainsKey(key.ToString()))
+                    if (a.Length > 1 && nextWords.ContainsKey(key.ToString()))
                     {
+
+                        key.Append(a[a.Length - 2] + " " + a[a.Length - 1]);
                         key.Append(" " + nextWords[key.ToString()]);
+                    }
+                    else
+                    {
+                        key = new StringBuilder();
+                        key.Append(a[a.Length - 1]);
+                        if (nextWords.ContainsKey(key.ToString()))
+                        {
+                            key.Append(" " + nextWords[key.ToString()]);
+                        }
                     }
                 }
             }
