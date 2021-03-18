@@ -2,7 +2,7 @@
 
 namespace TextAnalysis
 {
-    static class FrequencyAnalysisTask
+    public class FrequencyAnalysisTask
     {
         public static Dictionary<string, string> GetMostFrequentNextWords(List<List<string>> text)
         {

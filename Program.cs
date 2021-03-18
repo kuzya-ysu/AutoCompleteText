@@ -25,7 +25,7 @@ namespace TextAnalysis
                 "--test=" + string.Join(",", testsToRun)
             });
 
-            var text = File.ReadAllText("HarryPotterText.txt");
+            var text = File.ReadAllText("WarAndWorld.txt");
             var sentences = SentencesParserTask.ParseSentences(text);
             var frequency = FrequencyAnalysisTask.GetMostFrequentNextWords(sentences);
             //Расскомментируйте этот блок, если хотите выполнить последнюю задачу до первых двух.
@@ -46,10 +46,10 @@ namespace TextAnalysis
             */
             while (true)
             {
-                Console.Write("Введите первое слово (например, harry): ");
+                Console.Write("Введите первое слово (например, Наташа): ");
                 var beginning = Console.ReadLine();
                 if (string.IsNullOrEmpty(beginning)) return;
-                var phrase = TextGeneratorTask.ContinuePhrase(frequency, beginning.ToLower(), 10);
+                var phrase = TextGeneratorTask.ContinuePhrase(frequency, beginning.ToLower(), 50);
                 Console.WriteLine(phrase);
             }
         }

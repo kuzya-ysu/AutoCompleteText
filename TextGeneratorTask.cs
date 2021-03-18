@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TextAnalysis
 {
-    static class TextGeneratorTask
+    public class TextGeneratorTask
     {
         public static string ContinuePhrase(
             Dictionary<string, string> nextWords,

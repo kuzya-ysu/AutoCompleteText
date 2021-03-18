@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace TextAnalysis
 {
-    static class SentencesParserTask
+    public class SentencesParserTask
     {
         public static List<List<string>> ParseSentences(string text)
         {
